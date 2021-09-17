@@ -4,6 +4,8 @@ export default class Inventory {
   constructor() {
     //vector para agregar a todos los participantes
     this._inventory = new Array();
+    this._table = document.querySelector("#table");
+    this._table2 = document.querySelector("#table2");
 
     //tabla
   }
@@ -20,10 +22,12 @@ export default class Inventory {
     //se muestra en la tabla
 
     //si no lo encuentra, lo agrega
-    this._inventory.push(product);
-    console.log(this._inventory);
-
-    return true;
+    if (this._inventory.length < 20) {
+      this._inventory.push(product);
+      console.log(this._inventory);
+      return true;
+    }
+    return;
   }
 
   _find(product) {
@@ -87,5 +91,42 @@ export default class Inventory {
     }
     console.log(this._inventory);
     return false;
+  }
+
+  list() {
+    this._inventory.forEach((s) => {
+      let row = this._table.insertRow(-1);
+
+      let colId = row.insertCell(0);
+      let colName = row.insertCell(1);
+      let colQuantity = row.insertCell(2);
+      let colCost = row.insertCell(3);
+      let colTotalValue = row.insertCell(4);
+
+      colId.innerHTML = s.getId();
+      colName.innerHTML = s.getName();
+      colQuantity.innerHTML = s.getQuantity();
+      colCost.innerHTML = "$ " + s.getCost();
+      colTotalValue.innerHTML = "$ " + s.getTotal();
+    });
+    return;
+  }
+  listReverse() {
+    for (let i = this._inventory.length; i > 0; i--) {
+      let row = this._table2.insertRow(-1);
+
+      let colId = row.insertCell(0);
+      let colName = row.insertCell(1);
+      let colQuantity = row.insertCell(2);
+      let colCost = row.insertCell(3);
+      let colTotalValue = row.insertCell(4);
+
+      colId.innerHTML = this._inventory[i - 1].getId();
+      colName.innerHTML = this._inventory[i - 1].getName();
+      colQuantity.innerHTML = this._inventory[i - 1].getQuantity();
+      colCost.innerHTML = "$ " + this._inventory[i - 1].getCost();
+      colTotalValue.innerHTML = "$ " + this._inventory[i - 1].getTotal();
+    }
+    return;
   }
 }
