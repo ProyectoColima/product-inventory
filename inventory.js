@@ -26,17 +26,6 @@ export default class Inventory {
     return true;
   }
 
-  //checar que el participante no esté previamente registrado
-  /* _find(product) {
-    for (let i = 0; i < this._inventory.length; i++) {
-      if (this._inventory[i].getId() === product.getId()) {
-        return i;
-      } else {
-        return -1;
-      }
-    }
-  }*/
-
   _find(product) {
     let pos = -1;
     let pos2 = -1;
@@ -61,10 +50,32 @@ export default class Inventory {
     }
     return null;
   }
+  searchProduct(idFind) {
+    let find = this.search(idFind);
+    if (find != null) {
+      document.getElementById("elementFind").innerHTML =
+        "Producto encontrado ID: " +
+        this._inventory[find].getId() +
+        " Nombre: " +
+        this._inventory[find].getName() +
+        " Cantidad existente: " +
+        this._inventory[find].getQuantity() +
+        " Costo: $" +
+        this._inventory[find].getCost();
+      return true;
+    }
+    document.getElementById("elementFind").innerHTML = " ";
+    return false;
+  }
 
   delete(idDelete) {
     let search = this.search(idDelete);
     if (search != null) {
+      document.getElementById("elementDelete").innerHTML =
+        "Se ELIMINO este producto de su inventario  ID = " +
+        this._inventory[search].getId() +
+        " NOMBRE = " +
+        this._inventory[search].getName();
       for (let i = search; i < this._inventory.length; i++) {
         this._inventory[i] = this._inventory[i + 1];
       }

@@ -14,18 +14,18 @@
 
   <body>
     <div class="header">
-      <h1>Registro Tickets</h1>
+      <h1>Registro de Inventario</h1>
       <p class="azul">Registro</p>
     </div>
 
     <div class="content">
       <div>
-        <h2>Formulario</h2>
+        <h2>Ingresar Producto</h2>
         <div class="content-info">
           <form>
             <div class="field">
               <label>Id del Producto:</label>
-              <input id="id" type="text" size="35" />
+              <input id="id" type="number" size="35" />
             </div>
             <div class="field">
               <label>Nombre del Producto:</label>
@@ -53,11 +53,36 @@
           <form>
             <div class="field">
               <label>Id del Producto:</label>
-              <input id="idDelete" type="text" size="35" />
+              <input id="idDelete" type="number" size="35" />
             </div>
            
             <div class="field">
               <input id="btnDelete" type="button" value="Eliminar" />
+            </div>
+                  <div class="field">
+              <label id="elementDelete" type="text"></label>
+              
+            </div>
+          </form>
+        </div>
+      </div>
+
+       <div class="content">
+      <div>
+        <h2>Buscar producto</h2>
+        <div class="content-info">
+          <form>
+            <div class="field">
+              <label>Id del Producto:</label>
+              <input id="idFind" type="number" size="35" />
+            </div>
+           
+            <div class="field">
+              <input id="btnFind" type="button" value="Buscar" />
+            </div>
+                  <div class="field">
+              <label id="elementFind" type="text"></label>
+              
             </div>
           </form>
         </div>

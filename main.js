@@ -7,6 +7,9 @@ class App {
     let btnAdd = document.querySelector("#btnAdd");
     btnAdd.addEventListener("click", this._addProduct);
 
+    let btnFind = document.querySelector("#btnFind");
+    btnFind.addEventListener("click", this._search);
+
     let btnDelete = document.querySelector("#btnDelete");
     btnDelete.addEventListener("click", this._delete);
   }
@@ -36,7 +39,20 @@ class App {
       Swal.fire("Error", "Producto no existe", "error");
       return;
     }
-    Swal.fire("Correcto", "Se Elimino", "success");
+    Swal.fire("Producto eliminado", "Eliminado", "success");
+  };
+
+  _search = () => {
+    let inpIdFind = document.querySelector("#idFind");
+    let idFind = inpIdFind.value;
+
+    let find = this._inventory.searchProduct(idFind);
+
+    if (find === false) {
+      Swal.fire("Error", "Producto no existe", "error");
+      return;
+    }
+    Swal.fire("Producto encontrado", "Encontrado", "success");
   };
 }
 
