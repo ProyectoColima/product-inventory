@@ -24,7 +24,7 @@ export default class Inventory {
     //si no lo encuentra, lo agrega
     if (this._inventory.length < 20) {
       this._inventory.push(product);
-      console.log(this._inventory);
+
       return true;
     }
     return;
@@ -34,7 +34,7 @@ export default class Inventory {
     let inpPos = document.querySelector("#pos");
     let posInto = inpPos.value;
 
-    if (posInto < this._inventory.length + 20) {
+    if (posInto < this._inventory.length + 2) {
       let pos = this._find(product);
 
       //si ya está registrado, no lo agrega
@@ -45,7 +45,7 @@ export default class Inventory {
       //se muestra en la tabla
 
       //si no lo encuentra, lo agrega
-      if (this._inventory.length < 2) {
+      if (this._inventory.length < 20) {
         this._inventory.push(product);
         for (let i = this._inventory.length - 1; i >= posInto; i--) {
           this._inventory[i] = this._inventory[i - 1];
@@ -126,6 +126,8 @@ export default class Inventory {
   }
 
   list() {
+    document.getElementById("table").innerHTML =
+      "<table><tr><td><b>Id de Producto</b></td><td><b>Nombre</b></td><td><b>Cantidad</b></td><td><b>Costo por Unidad</b></td><td><b>Valor de Mercancía</b></td></tr></table>";
     this._inventory.forEach((s) => {
       let row = this._table.insertRow(-1);
 
@@ -144,6 +146,9 @@ export default class Inventory {
     return;
   }
   listReverse() {
+    document.getElementById("table2").innerHTML =
+      "<table><tr><td><b>Id de Producto</b></td><td><b>Nombre</b></td><td><b>Cantidad</b></td><td><b>Costo por Unidad</b></td><td><b>Valor de Mercancía</b></td></tr></table>";
+
     for (let i = this._inventory.length; i > 0; i--) {
       let row = this._table2.insertRow(-1);
 
