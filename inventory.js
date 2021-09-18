@@ -30,6 +30,38 @@ export default class Inventory {
     return;
   }
 
+  addPos(product) {
+    let inpPos = document.querySelector("#pos");
+    let posInto = inpPos.value;
+
+    if (posInto < this._inventory.length + 20) {
+      let pos = this._find(product);
+
+      //si ya está registrado, no lo agrega
+      if (pos >= 0) {
+        return false;
+      }
+
+      //se muestra en la tabla
+
+      //si no lo encuentra, lo agrega
+      if (this._inventory.length < 2) {
+        this._inventory.push(product);
+        for (let i = this._inventory.length - 1; i >= posInto; i--) {
+          this._inventory[i] = this._inventory[i - 1];
+        }
+        this._inventory[posInto - 1] = product;
+
+        console.log(this._inventory);
+        return true;
+      }
+
+      return 1;
+    } else {
+      return 0;
+    }
+  }
+
   _find(product) {
     let pos = -1;
     let pos2 = -1;
